@@ -8,7 +8,7 @@ local Draggable = Instance.new("Frame")
 local Fullframe = Instance.new("Frame")
 local Walkspeed = Instance.new("TextButton")
 local UICorner = Instance.new("UICorner")
-local Fly = Instance.new("TextButton")
+local God = Instance.new("TextButton")
 local UICorner_2 = Instance.new("UICorner")
 local ControlBar = Instance.new("Frame")
 local Close = Instance.new("TextButton")
@@ -47,20 +47,20 @@ Walkspeed.TextWrapped = true
 
 UICorner.Parent = Walkspeed
 
-Fly.Name = "Fly"
-Fly.Parent = Fullframe
-Fly.BackgroundColor3 = Color3.fromRGB(52, 255, 225)
-Fly.BackgroundTransparency = 0.250
-Fly.Position = UDim2.new(0.524553537, 0, 0.403100789, 0)
-Fly.Size = UDim2.new(0, 200, 0, 50)
-Fly.Font = Enum.Font.SourceSansBold
-Fly.Text = "Fly(Not working)"
-Fly.TextColor3 = Color3.fromRGB(0, 0, 0)
-Fly.TextScaled = true
-Fly.TextSize = 14.000
-Fly.TextWrapped = true
+God.Name = "God"
+God.Parent = Fullframe
+God.BackgroundColor3 = Color3.fromRGB(52, 255, 225)
+God.BackgroundTransparency = 0.250
+God.Position = UDim2.new(0.524553537, 0, 0.403100789, 0)
+God.Size = UDim2.new(0, 200, 0, 50)
+God.Font = Enum.Font.SourceSansBold
+God.Text = "GOD"
+God.TextColor3 = Color3.fromRGB(0, 0, 0)
+God.TextScaled = true
+God.TextSize = 14.000
+God.TextWrapped = true
 
-UICorner_2.Parent = Fly
+UICorner_2.Parent = God
 
 ControlBar.Name = "ControlBar"
 ControlBar.Parent = Draggable
@@ -102,7 +102,7 @@ ImageLabel.Image = "rbxassetid://9061825559"
 
 -- Scripts:
 
-local function GNKYXPI_fake_script() -- ScreenGui.LocalScript 
+local function QECO_fake_script() -- ScreenGui.LocalScript 
 	local script = Instance.new('LocalScript', ScreenGui)
 
 	frame = script.Parent.Draggable
@@ -110,8 +110,8 @@ local function GNKYXPI_fake_script() -- ScreenGui.LocalScript
 	frame.Selectable = true
 	frame.Active = true
 end
-coroutine.wrap(GNKYXPI_fake_script)()
-local function LPWOMDA_fake_script() -- Walkspeed.LocalScript 
+coroutine.wrap(QECO_fake_script)()
+local function WIQUDMU_fake_script() -- Walkspeed.LocalScript 
 	local script = Instance.new('LocalScript', Walkspeed)
 
 	local Plr = game.Players.LocalPlayer
@@ -120,18 +120,30 @@ local function LPWOMDA_fake_script() -- Walkspeed.LocalScript
 		Plr.Character.Humanoid.WalkSpeed = 50
 	end)
 end
-coroutine.wrap(LPWOMDA_fake_script)()
-local function RZDTMQE_fake_script() -- Fullframe.Script 
+coroutine.wrap(WIQUDMU_fake_script)()
+local function SFXP_fake_script() -- God.LocalScript 
+	local script = Instance.new('LocalScript', God)
+
+	local plr = game.Players.LocalPlayer
+	
+	script.Parent.MouseButton1Click:Connect(function(God)
+		while true do
+			plr.Character.Humanoid.Health = plr.Character.Humanoid.Health+100
+		end
+	end)
+end
+coroutine.wrap(SFXP_fake_script)()
+local function WXRRYL_fake_script() -- Fullframe.Script 
 	local script = Instance.new('Script', Fullframe)
 
 	
 end
-coroutine.wrap(RZDTMQE_fake_script)()
-local function TKNQMP_fake_script() -- ControlBar.LocalScript 
+coroutine.wrap(WXRRYL_fake_script)()
+local function WZGC_fake_script() -- ControlBar.LocalScript 
 	local script = Instance.new('LocalScript', ControlBar)
 
 	script.Parent.Close.MouseButton1Click:Connect(function(close)
 		script.Parent.Parent.Parent:Destroy()
 	end)
 end
-coroutine.wrap(TKNQMP_fake_script)()
+coroutine.wrap(WZGC_fake_script)()
