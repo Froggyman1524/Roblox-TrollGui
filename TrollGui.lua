@@ -3,25 +3,29 @@
 
 -- Instances:
 
-local ScreenGui = Instance.new("ScreenGui")
+local Evacuter = Instance.new("ScreenGui")
 local Draggable = Instance.new("Frame")
 local Fullframe = Instance.new("Frame")
 local Walkspeed = Instance.new("TextButton")
 local UICorner = Instance.new("UICorner")
-local God = Instance.new("TextButton")
+local Fly = Instance.new("TextButton")
 local UICorner_2 = Instance.new("UICorner")
+local UICorner_3 = Instance.new("UICorner")
 local ControlBar = Instance.new("Frame")
 local Close = Instance.new("TextButton")
-local TextLabel = Instance.new("TextLabel")
+local UICorner_4 = Instance.new("UICorner")
 local ImageLabel = Instance.new("ImageLabel")
+local TextLabel = Instance.new("TextLabel")
+local UICorner_5 = Instance.new("UICorner")
 
 --Properties:
 
-ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
-ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+Evacuter.Name = "Evacuter"
+Evacuter.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+Evacuter.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
 Draggable.Name = "Draggable"
-Draggable.Parent = ScreenGui
+Draggable.Parent = Evacuter
 Draggable.BackgroundColor3 = Color3.fromRGB(38, 38, 38)
 Draggable.Position = UDim2.new(0.0284848493, 0, 0.157330155, 0)
 Draggable.Size = UDim2.new(0, 448, 0, 43)
@@ -47,20 +51,22 @@ Walkspeed.TextWrapped = true
 
 UICorner.Parent = Walkspeed
 
-God.Name = "God"
-God.Parent = Fullframe
-God.BackgroundColor3 = Color3.fromRGB(52, 255, 225)
-God.BackgroundTransparency = 0.250
-God.Position = UDim2.new(0.524553537, 0, 0.403100789, 0)
-God.Size = UDim2.new(0, 200, 0, 50)
-God.Font = Enum.Font.SourceSansBold
-God.Text = "GOD"
-God.TextColor3 = Color3.fromRGB(0, 0, 0)
-God.TextScaled = true
-God.TextSize = 14.000
-God.TextWrapped = true
+Fly.Name = "Fly"
+Fly.Parent = Fullframe
+Fly.BackgroundColor3 = Color3.fromRGB(52, 255, 225)
+Fly.BackgroundTransparency = 0.250
+Fly.Position = UDim2.new(0.524553537, 0, 0.403100789, 0)
+Fly.Size = UDim2.new(0, 200, 0, 50)
+Fly.Font = Enum.Font.SourceSansBold
+Fly.Text = "Fly(R6 only)"
+Fly.TextColor3 = Color3.fromRGB(0, 0, 0)
+Fly.TextScaled = true
+Fly.TextSize = 14.000
+Fly.TextWrapped = true
 
-UICorner_2.Parent = God
+UICorner_2.Parent = Fly
+
+UICorner_3.Parent = Fullframe
 
 ControlBar.Name = "ControlBar"
 ControlBar.Parent = Draggable
@@ -81,6 +87,15 @@ Close.TextScaled = true
 Close.TextSize = 14.000
 Close.TextWrapped = true
 
+UICorner_4.Parent = ControlBar
+
+ImageLabel.Parent = Draggable
+ImageLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ImageLabel.BackgroundTransparency = 1.000
+ImageLabel.Position = UDim2.new(-0.00223214296, 0, -0.0232558139, 0)
+ImageLabel.Size = UDim2.new(0, 44, 0, 43)
+ImageLabel.Image = "rbxassetid://9061825559"
+
 TextLabel.Parent = Draggable
 TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 TextLabel.BackgroundTransparency = 1.000
@@ -93,57 +108,125 @@ TextLabel.TextScaled = true
 TextLabel.TextSize = 14.000
 TextLabel.TextWrapped = true
 
-ImageLabel.Parent = Draggable
-ImageLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-ImageLabel.BackgroundTransparency = 1.000
-ImageLabel.Position = UDim2.new(-0.00223214296, 0, -0.0232558139, 0)
-ImageLabel.Size = UDim2.new(0, 44, 0, 43)
-ImageLabel.Image = "rbxassetid://9061825559"
+UICorner_5.Parent = Draggable
 
 -- Scripts:
 
-local function QECO_fake_script() -- ScreenGui.LocalScript 
-	local script = Instance.new('LocalScript', ScreenGui)
-
-	frame = script.Parent.Draggable
-	frame.Draggable = true
-	frame.Selectable = true
-	frame.Active = true
-end
-coroutine.wrap(QECO_fake_script)()
-local function WIQUDMU_fake_script() -- Walkspeed.LocalScript 
+local function HSTL_fake_script() -- Walkspeed.LocalScript 
 	local script = Instance.new('LocalScript', Walkspeed)
 
-	local Plr = game.Players.LocalPlayer
 	
-	script.Parent.MouseButton1Click:Connect(function(Fast)
-		Plr.Character.Humanoid.WalkSpeed = 50
-	end)
 end
-coroutine.wrap(WIQUDMU_fake_script)()
-local function SFXP_fake_script() -- God.LocalScript 
-	local script = Instance.new('LocalScript', God)
+coroutine.wrap(HSTL_fake_script)()
+local function GBKRS_fake_script() -- Fly.LocalScript 
+	local script = Instance.new('LocalScript', Fly)
 
 	local plr = game.Players.LocalPlayer
 	
 	script.Parent.MouseButton1Click:Connect(function(God)
-		while true do
-			plr.Character.Humanoid.Health = plr.Character.Humanoid.Health+100
+		repeat wait()
+		until game.Players.LocalPlayer and game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:findFirstChild("Torso") and game.Players.LocalPlayer.Character:findFirstChild("Humanoid")
+		local mouse = game.Players.LocalPlayer:GetMouse()
+		repeat wait() until mouse
+		local plr = game.Players.LocalPlayer
+		local torso = plr.Character.Torso
+		local flying = true
+		local deb = true
+		local ctrl = {f = 0, b = 0, l = 0, r = 0}
+		local lastctrl = {f = 0, b = 0, l = 0, r = 0}
+		local maxspeed = 50
+		local speed = 0
+	
+		function Fly()
+			local bg = Instance.new("BodyGyro", torso)
+			bg.P = 9e4
+			bg.maxTorque = Vector3.new(9e9, 9e9, 9e9)
+			bg.cframe = torso.CFrame
+			local bv = Instance.new("BodyVelocity", torso)
+			bv.velocity = Vector3.new(0,0.1,0)
+			bv.maxForce = Vector3.new(9e9, 9e9, 9e9)
+			repeat wait()
+				plr.Character.Humanoid.PlatformStand = true
+				if ctrl.l + ctrl.r ~= 0 or ctrl.f + ctrl.b ~= 0 then
+					speed = speed+.5+(speed/maxspeed)
+					if speed > maxspeed then
+						speed = maxspeed
+					end
+				elseif not (ctrl.l + ctrl.r ~= 0 or ctrl.f + ctrl.b ~= 0) and speed ~= 0 then
+					speed = speed-1
+					if speed < 0 then
+						speed = 0
+					end
+				end
+				if (ctrl.l + ctrl.r) ~= 0 or (ctrl.f + ctrl.b) ~= 0 then
+					bv.velocity = ((game.Workspace.CurrentCamera.CoordinateFrame.lookVector * (ctrl.f+ctrl.b)) + ((game.Workspace.CurrentCamera.CoordinateFrame * CFrame.new(ctrl.l+ctrl.r,(ctrl.f+ctrl.b)*.2,0).p) - game.Workspace.CurrentCamera.CoordinateFrame.p))*speed
+					lastctrl = {f = ctrl.f, b = ctrl.b, l = ctrl.l, r = ctrl.r}
+				elseif (ctrl.l + ctrl.r) == 0 and (ctrl.f + ctrl.b) == 0 and speed ~= 0 then
+					bv.velocity = ((game.Workspace.CurrentCamera.CoordinateFrame.lookVector * (lastctrl.f+lastctrl.b)) + ((game.Workspace.CurrentCamera.CoordinateFrame * CFrame.new(lastctrl.l+lastctrl.r,(lastctrl.f+lastctrl.b)*.2,0).p) - game.Workspace.CurrentCamera.CoordinateFrame.p))*speed
+				else
+					bv.velocity = Vector3.new(0,0.1,0)
+				end
+				bg.cframe = game.Workspace.CurrentCamera.CoordinateFrame * CFrame.Angles(-math.rad((ctrl.f+ctrl.b)*50*speed/maxspeed),0,0)
+			until not flying
+			ctrl = {f = 0, b = 0, l = 0, r = 0}
+			lastctrl = {f = 0, b = 0, l = 0, r = 0}
+			speed = 0
+			bg:Destroy()
+			bv:Destroy()
+			plr.Character.Humanoid.PlatformStand = false
 		end
+		mouse.KeyDown:connect(function(key)
+			if key:lower() == "e" then
+				if flying then flying = false
+				else
+					flying = true
+					Fly()
+				end
+			elseif key:lower() == "w" then
+				ctrl.f = 1
+			elseif key:lower() == "s" then
+				ctrl.b = -1
+			elseif key:lower() == "a" then
+				ctrl.l = -1
+			elseif key:lower() == "d" then
+				ctrl.r = 1
+			end
+		end)
+		mouse.KeyUp:connect(function(key)
+			if key:lower() == "w" then
+				ctrl.f = 0
+			elseif key:lower() == "s" then
+				ctrl.b = 0
+			elseif key:lower() == "a" then
+				ctrl.l = 0
+			elseif key:lower() == "d" then
+				ctrl.r = 0
+			end
+		end)
+		Fly()
 	end)
 end
-coroutine.wrap(SFXP_fake_script)()
-local function WXRRYL_fake_script() -- Fullframe.Script 
+coroutine.wrap(GBKRS_fake_script)()
+local function WNNA_fake_script() -- Fullframe.Script 
 	local script = Instance.new('Script', Fullframe)
 
 	
 end
-coroutine.wrap(WXRRYL_fake_script)()
-local function WZGC_fake_script() -- ControlBar.LocalScript 
+coroutine.wrap(WNNA_fake_script)()
+local function IMVIB_fake_script() -- ControlBar.LocalScript 
 	local script = Instance.new('LocalScript', ControlBar)
 
 	script.Parent.Close.MouseButton1Click:Connect(function(close)
 		script.Parent.Parent.Parent:Destroy()
 	end)
 end
-coroutine.wrap(WZGC_fake_script)()
+coroutine.wrap(IMVIB_fake_script)()
+local function LPINSXK_fake_script() -- Evacuter.LocalScript 
+	local script = Instance.new('LocalScript', Evacuter)
+
+	frame = script.Parent.Draggable
+	frame.Draggable = true
+	frame.Selectable = true
+	frame.Active = true
+end
+coroutine.wrap(LPINSXK_fake_script)()
